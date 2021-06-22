@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Equipment Selector Extension</title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="content">
+      <div class="left">
+        <h4 class="fd-title fd-title--h4">MOCK EXTENSION: Equipment Selector <span id="syncObjectId"></span></h4>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="value">ServiceCall.id <span id="serviceCallId">#</span>, BusinessPartner.id <span id="businessPartnerId">#</span></label>
+          <input class="fd-input" type="text" id="value" placeholder="Enter equipment id...">
+        </div>
+      </div>
+      <div class="right">
+        <button class="fd-button fd-button--emphasized" onclick="addHandler()">Add</button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/fsm-shell"></script>
+    <script>
+      // Import ShellSDK and events list from FSMShell global variable
+      // see https://github.com/SAP/fsm-shell for more details.
+      const { ShellSdk, SHELL_EVENTS } = FSMShell;
+
+      // Initialise ShellSDK to connect with parent shell library
+      const shellSdk = ShellSdk.init(parent, '*');
+
+      // Initialise the extension by requesting the fsm context
+      shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+        clientIdentifier: 'equipment-selector',
+        auth: {
+          response_type: 'token'  // request a user token within the context
+        }
+      });
+
+      // Callback on fsm context response
+      shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
+        shellSdk.onViewState('selectedServiceCallId', async id => document.querySelector('#serviceCallId').innerText = id);
+        shellSdk.onViewState('selectedBusinessPartnerId', async id => {
+          console.log('CHANGED: selectedBusinessPartnerId:', id);
+          document.querySelector('#businessPartnerId').innerText = id;
+        });
+      });
+
+      function addHandler() {
+        const valueElement = document.querySelector('#value');
+        const id = valueElement.value;
+        if (id.length !== 32) {
+          return;
+        }
+        valueElement.value = '';
+        shellSdk.emit(SHELL_EVENTS.Version1.TO_APP, {
+          id: 'addEquipmentId',
+          payload: { id }
+        });
+      }
+    </script>
+  </body>
+</html>

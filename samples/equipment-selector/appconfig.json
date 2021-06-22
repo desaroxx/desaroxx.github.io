@@ -1,0 +1,9 @@
+{
+  "name": "Equipment Selector",
+  "provider": "SAP FSM",
+  "description": "Mock extension to select equipment",   
+  "version": "1.0.0", 
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/service-contract/icon.png",
+  "optimalHeight": "141px",
+  "outletPositions": ["SERVICE_CALL_CREATE_PAGE_EQUIPMENT_TAB_TOP", "SERVICE_CALL_VIEW_PAGE_EQUIPMENT_TAB_TOP"]
+}
