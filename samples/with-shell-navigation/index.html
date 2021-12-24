@@ -64,6 +64,7 @@
           <h2 class="fd-title fd-title--h2" id="home-title"></h2>
           <p id="home-text"></p>
           <a id="link-to-edit-text" href="#/actions/edit" onclick="syncWithLuigi('/actions/edit')"></a>
+          <button class="fd-button fd-button--emphasized" onclick="openModal()">Add</button>
         </section>
         <section id="section-actions-edit" class="section-hidden">
           <h2 class="fd-title fd-title--h2" id="actions-edit-title"></h2>
@@ -108,8 +109,20 @@
             const LANG_CODE = LOCALE_CONFIG.language ? LOCALE_CONFIG.language : LOCALE_CONFIG.code;
             translate(LANG_CODE);
           }
-        });
+        });       
       }
+
+      function openModal() {
+        consoel.log('openModal');
+        shellSdk.emit(SHELL_EVENTS.Version1.MODAL.OPEN, {
+          url: 'https://qt.coresystems.net/service-call/fragment/service-calls/FEFB694754E941E4B459FC4D61159D10/view',
+          modalSettings: {
+              title: 'My title',
+              size: 'l'
+          }
+        });
+      };
+      
     </script>
   </body>
 </html>
