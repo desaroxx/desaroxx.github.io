@@ -87,6 +87,8 @@
 
       // Initialize English as the current language
       translate('en');
+
+      let SHELL_SDK;
       
       if (ShellSdk.isInsideShell()) {
         // Hide the top bar and the side navigation from the extension as the top bar and the side navigation from the Shell are used
@@ -96,7 +98,7 @@
         window.addEventListener('popstate', router);
 
         // Initialize ShellSDK to connect with parent shell library
-        const SHELL_SDK = ShellSdk.init(parent, '*');
+        SHELL_SDK = ShellSdk.init(parent, '*');
         
         // Request current Shell language
         const PAYLOAD = 'Cockpit_SelectedLocale';
@@ -113,7 +115,6 @@
       }
 
       function openModal() {
-        console.log('openModal');
         SHELL_SDK.emit(SHELL_EVENTS.Version1.MODAL.OPEN, {
           url: 'https://qt.coresystems.net/service-call/fragment/service-calls/FEFB694754E941E4B459FC4D61159D10/view',
           modalSettings: {
