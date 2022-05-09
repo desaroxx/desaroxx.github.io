@@ -1,7 +1,7 @@
 {
-  "name": "Equipment Selector",
+  "name": "Outlet Tester",
   "provider": "SAP FSM",
-  "description": "Mock extension to select equipment",
+  "description": "Tester extension to test outlets",
   "version": "1.0.0",
   "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/service-contract/icon.png",
   "optimalHeight": "500px",
