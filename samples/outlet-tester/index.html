@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Equipment Selector Extension</title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="left">
+        <h4 class="fd-title fd-title--h4">View State Checker</h4>
+        <div class="fd-form-item">
+          <label class="fd-form-label" for="value"
+            >ViewState (Example: selectedActivityId)</label
+          >
+          <input
+            class="fd-input"
+            type="text"
+            id="viewStateKey"
+            placeholder="Enter viewState key..."
+          />
+        </div>
+        <hr />
+        <div class="result">
+          <label>Result</label>
+          <div class="value" #value>null</div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="fd-button fd-button--emphasized" onclick="addHandler()">
+          Check
+        </button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/fsm-shell"></script>
+    <script>
+      // Import ShellSDK and events list from FSMShell global variable
+      // see https://github.com/SAP/fsm-shell for more details.
+      const { ShellSdk, SHELL_EVENTS } = FSMShell;
+
+      // Initialise ShellSDK to connect with parent shell library
+      const shellSdk = ShellSdk.init(parent, "*");
+
+      // Initialise the extension by requesting the fsm context
+      shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+        clientIdentifier: "equipment-selector",
+        auth: {
+          response_type: "token", // request a user token within the context
+        },
+      });
+
+      // Callback on fsm context response
+      shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
+        console.log("ready...");
+      });
+
+      function addHandler() {
+        const valueElement = document.querySelector("#viewStateKey");
+        const viewStateKey = valueElement.value;
+        if (!viewStateKey) {
+          return;
+        }
+        shellSdk.onViewState(viewStateKey, async (newValue) => {
+          const newStringValue = newValue?.toString();
+          updateValue(newStringValue);
+        });
+      }
+
+      async function updateValue(newStringValue) {
+        const valueElement = document.querySelector("#value");
+        valueElement.innerText = newStringValue;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+.content {
+  border: 1px dotted gray;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 0 16px;
+
+  display: flex;
+}
+
+.left {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.right {
+  display: flex;
+}
+.right .fd-button {
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
