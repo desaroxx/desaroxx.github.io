@@ -73,12 +73,14 @@
           return;
         }
         shellSdk.onViewState(viewStateKey, async (newValue) => {
+          console.log("shellSdk.onViewState():", viewStateKey, "=>", newValue);
           const newStringValue = newValue?.toString();
           updateValue(newStringValue);
         });
       }
 
       async function updateValue(newStringValue) {
+        console.log("updateValue()", newStringValue);
         const valueElement = document.querySelector("#value");
         valueElement.innerText = newStringValue;
       }
