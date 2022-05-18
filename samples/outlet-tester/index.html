@@ -37,6 +37,12 @@
           <label>Result</label>
           <div class="value" id="value">null</div>
         </div>
+        <div class="result">
+          <label>Popular viewStates</label>
+          <div class="value" id="selectedActivityId">null</div>
+          <div class="value" id="selectedBusinessPartnerId">null</div>
+          <div class="value" id="selectedServiceCallId">null</div>
+        </div>
       </div>
       <div class="right">
         <button class="fd-button fd-button--emphasized" onclick="addHandler()">
@@ -64,6 +70,12 @@
       // Callback on fsm context response
       shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
         console.log("ready...");
+        subscribeViewState("selectedActivityId", "#selectedActivityId");
+        subscribeViewState(
+          "selectedBusinessPartnerId",
+          "#selectedBusinessPartnerId"
+        );
+        subscribeViewState("selectedServiceCallId", "#selectedServiceCallId");
       });
 
       function addHandler() {
@@ -72,16 +84,20 @@
         if (!viewStateKey) {
           return;
         }
+        subscribeViewState(viewStateKey, "#value");
+      }
+
+      function subscribeViewState(viewStateKey, elementId) {
         shellSdk.onViewState(viewStateKey, (newValue) => {
           console.log("shellSdk.onViewState():", viewStateKey, "=>", newValue);
           const newStringValue = newValue?.toString();
-          updateValue(newStringValue);
+          updateValue(elementId, newStringValue);
         });
       }
 
-      function updateValue(newStringValue) {
-        console.log("updateValue()", newStringValue);
-        const valueElement = document.querySelector("#value");
+      function updateValue(elementId, newStringValue) {
+        console.log("updateValue()", elementId, "=>", newStringValue);
+        const valueElement = document.querySelector(elementId);
         valueElement.innerText = newStringValue;
       }
     </script>
