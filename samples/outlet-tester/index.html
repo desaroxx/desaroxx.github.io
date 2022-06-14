@@ -85,6 +85,11 @@
           "#selectedBusinessPartnerId"
         );
         subscribeViewState("selectedServiceCallId", "#selectedServiceCallId");
+        shellSdk.on(SHELL_EVENTS.ERROR, (error) => {
+          console.log('received SHELL_EVENTS.ERROR');
+          console.error(error);
+        });
+        
       });
 
       function addHandler() {
