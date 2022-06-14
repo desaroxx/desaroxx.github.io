@@ -79,17 +79,17 @@
       // Callback on fsm context response
       shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
         console.log("ready...");
-        subscribeViewState("selectedActivityId", "#selectedActivityId");
-        subscribeViewState(
-          "selectedBusinessPartnerId",
-          "#selectedBusinessPartnerId"
-        );
-        subscribeViewState("selectedServiceCallId", "#selectedServiceCallId");
-        shellSdk.on(SHELL_EVENTS.ERROR, (error) => {
-          console.log('received SHELL_EVENTS.ERROR');
-          console.error(error);
-        });
-        
+      });
+
+      subscribeViewState("selectedActivityId", "#selectedActivityId");
+      subscribeViewState(
+        "selectedBusinessPartnerId",
+        "#selectedBusinessPartnerId"
+      );
+      subscribeViewState("selectedServiceCallId", "#selectedServiceCallId");
+      shellSdk.on(SHELL_EVENTS.ERROR, (error) => {
+        console.log('received SHELL_EVENTS.ERROR');
+        console.error(error);
       });
 
       function addHandler() {
