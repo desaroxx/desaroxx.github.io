@@ -52,8 +52,8 @@ html {
 
 .content {
   border: 1px dotted gray;
-  border-radius: 4px;
-  padding: 16px;
+  /* border-radius: 4px; */
+  padding: 0px;
   margin: 0 16px;
 
   display: flex;
