@@ -51,7 +51,7 @@ html {
 }
 
 .content {
-  border: 1px dotted gray;
+  /* border: 1px dotted gray; */
   /* border-radius: 4px; */
   padding: 0px;
   margin: 0 16px;
