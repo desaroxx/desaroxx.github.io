@@ -1,0 +1,9 @@
+{
+  "name": "PAI Data",
+  "provider": "SAP FSM",
+  "description": "Show Predictive Maintenance Data for Equipment",
+  "version": "1.0.0",
+  "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/service-contract/icon.png",
+  "optimalHeight": "170px",
+  "outletPositions": ["SERVICE_CALL_ACTIVITY_OUTLET_TAB"]
+}
