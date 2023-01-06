@@ -1,0 +1,18 @@
+openapi: "3.0.2"
+info:
+  title: User Schema
+  version: "1.0"
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        age:
+          type: integer
+        job:
+          type: string
