@@ -4,5 +4,5 @@
   "description": "Mock extension to test fullscreen with bottom footer",   
   "version": "1.0.0", 
   "icon": "https://raw.githubusercontent.com/SAP-samples/fsm-extension-sample/refactor/samples/service-contract/icon.png",
-  "optimalHeight": "141px"
+  "outletPositions": ["SERVICE_CALL_ACTIVITY_OUTLET_TAB"]
 }

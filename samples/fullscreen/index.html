@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Fullscreen Footer/title>
+    <title>Fullscreen Footer</title>
     <link
       href="https://unpkg.com/fundamental-styles@0.23.0/dist/fundamental-styles.css"
       rel="stylesheet"
@@ -15,7 +15,33 @@
       href="https://unpkg.com/fundamental-styles@0.23.0/dist/theming/sap_fiori_3.css"
       rel="stylesheet"
     />
-    <link href="styles.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .content {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            padding: 8px;
+            border-top: 1px solid var(--sapList_BorderColor);
+        }
+
+        .fd-button {
+            margin-left: 8px;
+        }
+    </style>
   </head>
   <body>
     <div class="content">
